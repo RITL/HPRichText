@@ -21,10 +21,10 @@ import {
   closeSelf,
   empty,
   endTag,
+  extractBodyContent,
   fillAttrs,
   filterAttrs,
   inline,
-  extractBodyContent,
   replaceBr,
   replaceEscapeSymbol,
   replaceWebpPic,
@@ -116,6 +116,10 @@ class HTMLParser {
       // 优化样式相关属性
       if (name === 'style') {
         const styleObj = parseStyle(value); // parse to object
+        // display 是块级标签时
+        if (styleObj?.display === 'block') {
+          node.tagType = 'block'
+        }
         node.artUIStyleObject = parseToArtUI(styleObj, this.baseFontSize as number);
       } else if (value.match(/ /)) {
         // make it array of attribute
