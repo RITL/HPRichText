@@ -148,7 +148,10 @@ export struct HPRichTextV2 {
           this.nodesBuilder({ nodes: this.htmlJson.nodes });
         }
         .alignItems(HorizontalAlign?.Start)
-      }
+      }.nestedScroll({
+        scrollForward: NestedScrollMode.PARENT_FIRST,
+        scrollBackward: NestedScrollMode.SELF_FIRST
+      })
     } else {
       Column() {
         this.nodesBuilder({ nodes: this.htmlJson.nodes });
