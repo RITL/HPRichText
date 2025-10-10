@@ -58,14 +58,38 @@
 
 ## 更新日志
 
-#### 完整日志：[changelog](https://github.com/asasugar/HPRichText/blob/master/library/CHANGELOG.md)
+### 完整日志：[changelog](https://github.com/asasugar/HPRichText/blob/master/library/CHANGELOG.md)
 
-#### 最近更新：[v3.0.9](https://github.com/asasugar/HPRichText/releases/tag/v3.0.9) (2025-04-07)
+### 最近更新：[v3.1.0](https://github.com/asasugar/HPRichText/releases/tag/v3.1.0) (2025-10-10)
 
-### Features
+#### Features
 
 - 🎸
-  新增文本和图片的复制 ([9460778](https://github.com/asasugar/HPRichText/commit/9460778cb29edbc44ca5518135362c3dcf91f69a))
+  Image新增constraintSize属性限制 [(#107)](https://github.com/asasugar/HPRichText/issues/107)
+  ([b4f1d31](https://github.com/asasugar/HPRichText/commit/b4f1d3195cb0179f3e99613821d4537acdf0ddc2))
+
+- 🎸
+  优化提取body之间内容函数 [(#99)](https://github.com/asasugar/HPRichText/issues/99)
+  ([0505019](https://github.com/asasugar/HPRichText/commit/050501943a6658af86c926c2e9eaf3ac3bfbb10a))
+
+- 🎸
+  新增display属性 [(#96)](https://github.com/asasugar/HPRichText/issues/96)
+  ([f178b2f](https://github.com/asasugar/HPRichText/commit/f178b2fd6be940c64a55e1a17c0e84877a271b76))
+
+#### Bug Fixes
+
+- 🐛 支持嵌套滚动 [(#110)](https://github.com/asasugar/HPRichText/issues/110)
+  ([e5d236b](https://github.com/asasugar/HPRichText/commit/e5d236b4779e77ed6d20623666cf8dc2c193d30f))
+
+- 🐛 修复font标签内部包含a标签，会出现文本颜色错误的问题 [(#101)](https://github.com/asasugar/HPRichText/issues/101)
+  ([c27f5d3](https://github.com/asasugar/HPRichText/commit/c27f5d38c5475784a76f8edf57d55033d93e3d18))
+
+#### Refactor
+
+- 💡 优化入口导出,新增customHandler例子
+  [#102](https://github.com/asasugar/HPRichText/issues/102)([fa7d77c](https://github.com/asasugar/HPRichText/commit/fa7d77c5fd5f33cc9bd5892604b187c6e68ac5ae))
+
+- 💡 重命名 Example ([8b59aee](https://github.com/asasugar/HPRichText/commit/8b59aeeef944f89b1e294af4160a2a907f887738))
 
 ## 简介
 
