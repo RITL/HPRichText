@@ -147,8 +147,11 @@ export function excludeExtendsParentArtUIStyle(style?: ArtStyleObject, node?: No
       left: style?.padding?.left
     }
   }
-  // 如果是 a 标签且href有值的话，则不继承父节点的fontColor
-  if (node.tag === 'a' && node.attr?.href && style.fontColor) {
+  // 如果是 a 标签且href有值的话，则不继承父节点的fontColor,但需要将父节点的fontColor赋值给a标签的style.color
+  if (node?.tag === 'a' && node.attr?.href && style.fontColor) {
+    node.attr.style = Object.assign(node.attr.style ?? {}, {
+      color: style.fontColor
+    })
     delete style.fontColor;
   }
   return style;

@@ -30,7 +30,7 @@ export struct HPRichTextV2 {
   get htmlJson(): HtmlParserResult {
     const htmlParser = new HTMLParser(this.richTextModel.richTextOption);
     const htmlJson = htmlParser.html2json();
-    // console.log('转化之后的html', JSON.stringify?.(htmlJson.nodes));
+    console.log('转化之后的html', JSON.stringify?.(htmlJson.nodes));
     return htmlJson;
   };
 
