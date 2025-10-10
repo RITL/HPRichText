@@ -1,5 +1,3 @@
-import HTMLParser from './src/main/ets/common/utils/html/html-parser';
-
 // 导出ts声明
 // 不支持 export * from 'xx'
 export type {
@@ -41,22 +39,16 @@ export { ObservedHPRichText } from './src/main/ets/components/hprichtext/Observe
 
 export { HPRichTextV2 } from './src/main/ets/components/hprichtext/HPRichTextV2'; // v2组件
 
-// 导出方法
-export {
-  excludeExtendsParentArtUIStyle,
-  firstLetterToLowerCase,
-  formatColor,
-  headingStyles,
-  parseStyle,
-  parseToArtUI,
-  setHtmlAttributes,
-  specialStyles,
-  transformObject
-} from './src/main/ets/common/utils/css/index';
-
 // 导出model
 export { RichTextOptionModel } from './src/main/ets/components/hprichtext/model/RichTextOptionModel';
 
 export { RichTextOptionModelV2 } from './src/main/ets/components/hprichtext/model/RichTextOptionModelV2';
 
-export { HTMLParser };
+// 导出 htmlParser 类
+export { default as HTMLParser } from './src/main/ets/common/utils/html/html-parser';
+
+// 导出 Enum
+export * from './src/main/ets/common/types/artUIEnum';
+
+// 导出方法
+export * from './src/main/ets/common/utils/css/index';
