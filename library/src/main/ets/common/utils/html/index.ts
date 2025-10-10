@@ -14,16 +14,40 @@ export function makeMap(str: string) {
 }
 
 /**
- * 移除 HTML 字符串中的 DOCTYPE 声明。
+ * 提取 HTML 文档中 body 标签内的内容。
+ * 如果输入不是完整的 HTML 文档（不包含 body 标签），则返回原始内容。
  *
- * @param html - 包含 DOCTYPE 声明的 HTML 字符串。
- * @returns 如果 HTML 字符串包含 DOCTYPE 声明，则返回移除 DOCTYPE 声明后的内容；否则返回原始 HTML 字符串。
+ * @param html - HTML 字符串，可能包含完整的文档结构。
+ * @returns 如果包含 body 标签，返回 body 标签内的内容；否则返回原始 HTML 字符串。
  */
-export function removeDOCTYPE(html: string) {
-  const isDocument = /<body.*>([^]*)<\/body>/.test(html);
-  return isDocument ? RegExp.$1 : html;
-}
+export function extractBodyContent(html: string): string {
+  // 参数验证
+  if (!html || typeof html !== 'string') {
+    return html || '';
+  }
 
+  // 更健壮的正则表达式，正确处理属性中的引号和特殊字符：
+  // 1. <body - 匹配开始标签
+  // 2. (?:\s+(?:[^>"']|"[^"]*"|'[^']*')*)?  - 非捕获组匹配属性：
+  //    - [^>"'] - 匹配非引号、非>的字符
+  //    - "[^"]*" - 匹配双引号包围的属性值
+  //    - '[^']*' - 匹配单引号包围的属性值
+  // 3. \s*> - 匹配可选空白和结束的 >
+  // 4. ([\s\S]*?) - 非贪婪匹配标签内容
+  // 5. <\/body\s*> - 匹配结束标签
+  // 处理异常边界场景：<body onclick="alert('>')">
+  const bodyRegex = /<body(?:\s+(?:[^>"']|"[^"]*"|'[^']*')*)?>\s*([\s\S]*?)\s*<\/body\s*>/im;
+
+  const bodyMatch = html.match(bodyRegex);
+
+  // 如果找到 body 标签，返回其内容（去除首尾空白）；否则返回原始 HTML
+  if (bodyMatch && bodyMatch[1] !== undefined) {
+    const content = bodyMatch[1].trim();
+    return content.length > 0 ? content : html;
+  }
+
+  return html;
+}
 
 /**
  * 移除 HTML 字符串中的注释、JavaScript 多行注释、`<script>` 标签及其内容、`<style>` 标签及其内容。

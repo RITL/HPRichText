@@ -24,7 +24,7 @@ import {
   fillAttrs,
   filterAttrs,
   inline,
-  removeDOCTYPE,
+  extractBodyContent,
   replaceBr,
   replaceEscapeSymbol,
   replaceWebpPic,
@@ -237,7 +237,7 @@ class HTMLParser {
   }
 
   _dealHtmlJson(html: string = this.html): string {
-    html = removeDOCTYPE(html);
+    html = extractBodyContent(html);
     html = trimHtml(html);
     html = replaceBr(html);
     html = replaceEscapeSymbol(html);
@@ -447,7 +447,7 @@ class HTMLParser {
               node.nodes.unshift(parentNodes[parentNodesLength-1]);
               parentNodes.pop();
               node.addHarmonyTextTag = true;
-              if (node.attr?.onClick || node.tag === 'a') {
+              if (node.attr && (node.attr?.onClick || node.tag === 'a')) {
                 node.attr.clickIndex += 1;
               }
             }
